@@ -1,12 +1,15 @@
-import CardPage from "../pages/CardPage";
-import TablePage from "../pages/TablePage";
+import Main from "../components/Main/Main";
+import CardPage from "../pages/CardPage/CardPage";
+import MainPage from "../pages/MainPage/MainPage";
 import { Routes, Route } from "react-router-dom";
 
 function RoutesPage() {
   return (
     <Routes>
-      <Route path="/table" element={<TablePage />} />
-      <Route path="/card" element={<CardPage />} />
+      <Route path="/" element={<Main />}>
+        <Route index element={<MainPage />} />
+        <Route path=":id" element={<CardPage />} />
+      </Route>
     </Routes>
   );
 }

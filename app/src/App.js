@@ -1,13 +1,11 @@
-import Main from "./components/Main";
 import { BrowserRouter } from "react-router-dom";
+import RoutesPage from "./router/Routes";
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Main/>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <RoutesPage />
+    </BrowserRouter>
   );
 }
 
