@@ -1,39 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Protest+Revolution&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Protest+Revolution&family=Roboto&display=swap");
 .header {
-    display: flex;
-    flex-direction: row;
-    height: 10vh;
-    color: white;
-    font-size: 5vh;
-    font-family: "Protest Revolution", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 10vh;
+  color: white;
+  font-size: 5vh;
+  font-family: "Protest Revolution", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
-.header img{
-    margin-right: 5vh;
-    width: 14vh;
-    height: 14vh;
+.header img {
+  margin-right: 5vh;
+  width: 14vh;
+  height: 14vh;
+}
+.header-logo {
+  display: flex;
+  flex-direction: row;
+}
+.header-logo a{
+    color: white;
+  }
+.header-logo p {
+  display: flex;
+  margin: auto;
 }
 .content {
-    height: 75vh;
-    background-image: url('../img/backgraund.jpg');
-    background-size: 108vh 34vh;
-    background-repeat: repeat;
-    background-color: rgba(22, 23, 22, 0.2);
-    background-blend-mode: overlay;
+  height: 75vh;
+  background-image: url("../img/backgraund3.jpg");
+  background-size: 108vh 34vh;
+  background-repeat: repeat;
+  background-color: rgba(22, 23, 22, 0.2);
+  background-blend-mode: overlay;
+  padding: 100px;
 }
 .footer {
-    height: 15vh;
-    padding: 0;
-    background-color: white;
+  height: 15vh;
+  padding: 0;
+  background-color: white;
 }
 .footer_container {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
 .footer-img {
-    display: flex;
-    width: 25vh;
-    opacity: 50%;
+  display: flex;
+  width: 25vh;
+  opacity: 50%;
 }
