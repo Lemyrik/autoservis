@@ -39,7 +39,7 @@
   background-repeat: repeat;
   background-color: rgba(22, 23, 22, 0.2);
   background-blend-mode: overlay;
-  padding: 100px;
+  padding: 3%;
 }
 .footer {
   height: 15vh;
@@ -59,4 +59,6 @@
 .footer-img:hover {
   opacity: 1;
 }
-
+.card {
+  width: auto;
+}

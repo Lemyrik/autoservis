@@ -1,22 +1,64 @@
-import React from "react";
-import { Card } from "antd";
-import { useParams } from "react-router-dom";
+import { Button, Card, Form, Input, Space } from "antd";
+import FormItem from "antd/es/form/FormItem";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import getCarById from "../../API/getCarById";
+import { UseFetching } from "../../hooks/UseFetching";
+import putCar from "../../API/putCars";
+import { entryFields } from "./config";
+import CardTitle from "../../components/CardTitle/CardTitle";
 
 function CardPage() {
   const { id } = useParams();
-  console.log(id);
+
+  const [car, setCar] = useState({});
+  const { fetchData, error, loading } = UseFetching();
+
+  const getCar = async () => {
+    const result = await getCarById(id);
+    setCar(result);
+  };
+
+  useEffect(() => {
+    fetchData(getCar);
+  }, []);
+
+  const onFinish = (values) => {
+    putCar({ ...values, id });
+  };
 
   return (
-    <Card
-      title="Default size card"
-      style={{
-        width: 300,
-      }}
-    >
-      <p>Card content</p>
-      <p>Card content</p>
-      <p>Card content</p>
-    </Card>
+    Object.keys(car).length && (
+      <Card title={<CardTitle />} className="card" loading={loading}>
+        <Form
+          onFinish={onFinish}
+          labelCol={{
+            span: 2,
+          }}
+          wrapperCol={{
+            span: 23,
+          }}
+        >
+          {entryFields.map(({ label, name, rules }) => (
+            <FormItem
+              label={label}
+              name={name}
+              initialValue={car?.[name]}
+              rules={rules}
+            >
+              <Input />
+            </FormItem>
+          ))}
+          <FormItem
+            wrapperCol={{
+              offset: 21,
+            }}
+          >
+            <Button htmlType="Submit">Save</Button>
+          </FormItem>
+        </Form>
+      </Card>
+    )
   );
 }
 
