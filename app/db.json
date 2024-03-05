@@ -1,0 +1,28 @@
+{
+  "cars": [
+    {
+      "id": "11",
+      "key": "1",
+      "brand": "audi",
+      "age": 1996,
+      "mileage": 580000,
+      "price": 3500
+    },
+    {
+      "id": "12",
+      "key": "2",
+      "brand": "BMW",
+      "age": 2013,
+      "mileage": 360000,
+      "price": 14700
+    },
+    {
+      "id": "13",
+      "key": "3",
+      "brand": "opel",
+      "age": 2001,
+      "mileage": 420000,
+      "price": 6800
+    }
+  ]
+}

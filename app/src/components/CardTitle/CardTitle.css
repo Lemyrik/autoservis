@@ -1,0 +1,9 @@
+.cardTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 120px;
+}
+.cardTitle a {
+  color: black;
+}
