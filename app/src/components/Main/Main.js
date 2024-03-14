@@ -5,7 +5,6 @@ import Logo from "../Logo/Logo";
 import Image from "../Image/Image";
 import { Outlet } from "react-router-dom";
 import { FOOTER_IMAGES_PATHS } from "../../constants/common/constants";
-import Filter from "../Filter/Filter";
 
 const { Header, Content, Footer } = Layout;
 function Main() {
@@ -13,7 +12,6 @@ function Main() {
     <>
       <Header className="header">
         <Logo />
-        <Filter />
       </Header>
       <Content className="content">
         <Outlet />

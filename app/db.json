@@ -1,12 +1,11 @@
 {
   "cars": [
     {
-      "id": "11",
-      "key": "1",
       "brand": "audi",
       "age": 1996,
       "mileage": 580000,
-      "price": 3500
+      "price": 3500,
+      "id": "11"
     },
     {
       "id": "12",
@@ -20,7 +19,7 @@
       "id": "13",
       "key": "3",
       "brand": "opel",
-      "age": 2001,
+      "age": 2013,
       "mileage": 420000,
       "price": 6800
     }

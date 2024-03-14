@@ -1,7 +1,7 @@
-import { Button, Card, Form, Input, Space } from "antd";
+import { Button, Card, Form, Input } from "antd";
 import FormItem from "antd/es/form/FormItem";
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import getCarById from "../../API/getCarById";
 import { UseFetching } from "../../hooks/UseFetching";
 import putCar from "../../API/putCars";

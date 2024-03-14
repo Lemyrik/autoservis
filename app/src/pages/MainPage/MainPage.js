@@ -1,17 +1,18 @@
 import { Table, message } from "antd";
 import { React, useEffect, useState } from "react";
-import getAllCars from "../../API/getAllCars";
-import deleteCar from "../../API/deleteCar";
+import getAllCars from "../../API/GetAllCars";
+import deleteCar from "../../API/DeleteCar";
 import tableColums from "./config";
 import { UseFetching } from "../../hooks/UseFetching";
+import Filter from "../../components/Filter/Filter";
 
 function MainPage() {
   const [data, setData] = useState("");
   const { fetchData, error, loading } = UseFetching();
 
-  async function getData() {
+  async function getData(params) {
     fetchData(async () => {
-      const data = await getAllCars();
+      const data = await getAllCars(params);
       setData(data);
     });
   }
@@ -27,11 +28,14 @@ function MainPage() {
   }, []);
 
   return (
+    <>
+    <Filter getData={getData}/>
     <Table
       columns={tableColums(deleteData)}
       dataSource={data}
       loading={loading}
     />
+    </>
   );
 }
 
