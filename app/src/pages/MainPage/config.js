@@ -16,19 +16,19 @@ function tableColums(deleteData) {
       title: "Age",
       dataIndex: "age",
       key: "age",
-      sorter: (a, b) => a.age - b.age,
+      sorter: (a, b) => a?.age - b?.age,
     },
     {
       title: "Mileage, km",
       dataIndex: "mileage",
       key: "mileage",
-      sorter: (a, b) => a.mileage - b.mileage,
+      sorter: (a, b) => a?.mileage - b?.mileage,
     },
     {
       title: "Price, $",
       dataIndex: "price",
       key: "price",
-      sorter: (a, b) => a.price - b.price,
+      sorter: (a, b) => a?.price - b?.price,
     },
     {
       title: "Action",

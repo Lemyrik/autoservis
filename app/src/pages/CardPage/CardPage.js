@@ -2,9 +2,9 @@ import { Button, Card, Form, Input } from "antd";
 import FormItem from "antd/es/form/FormItem";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import getCarById from "../../API/getCarById";
+import getCarById from "../../API/GetCarById";
 import { UseFetching } from "../../hooks/UseFetching";
-import putCar from "../../API/putCars";
+import putCar from "../../API/PutCars";
 import { entryFields } from "./config";
 import CardTitle from "../../components/CardTitle/CardTitle";
 
@@ -41,6 +41,7 @@ function CardPage() {
         >
           {entryFields.map(({ label, name, rules }) => (
             <FormItem
+            key={label}
               label={label}
               name={name}
               initialValue={car?.[name]}
