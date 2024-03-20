@@ -5,6 +5,8 @@ import deleteCar from "../../API/DeleteCar";
 import tableColums from "./config";
 import { UseFetching } from "../../hooks/UseFetching";
 import Filter from "../../components/Filter/Filter";
+import AddRecord from "../../components/AddRecord/AddRecord";
+import "./MainPage.css";
 
 function MainPage() {
   const [data, setData] = useState("");
@@ -29,12 +31,15 @@ function MainPage() {
 
   return (
     <>
-    <Filter getData={getData}/>
-    <Table
-      columns={tableColums(deleteData)}
-      dataSource={data}
-      loading={loading}
-    />
+      <div className="tools">
+        <AddRecord getData={getData}/>
+        <Filter getData={getData} />
+      </div>
+      <Table
+        columns={tableColums(deleteData)}
+        dataSource={data}
+        loading={loading}
+      />
     </>
   );
 }

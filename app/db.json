@@ -22,6 +22,14 @@
       "age": 2013,
       "mileage": 420000,
       "price": 6800
+    },
+    {
+      "id": "14",
+      "key": "4",
+      "brand": "opel",
+      "age": 2024,
+      "mileage": 0,
+      "price": 25300
     }
   ]
 }
