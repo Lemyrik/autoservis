@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { FilterOutlined } from "@ant-design/icons";
 import { Form, Input, Button, Drawer, Space, Switch } from "antd";
 import { entryFields } from "./config";
+import { useDispatch } from "react-redux";
+import { fetchCars } from "../../store/carSlice";
+
 const Filter = ({ getData }) => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [onlyNew, setOnlyNew] = useState(false);
 
@@ -18,10 +22,10 @@ const Filter = ({ getData }) => {
       arg.age = 2024;
       arg.mileage = 0;
     }
-    getData(arg);
+    dispatch(fetchCars(arg));
   };
   function onReset() {
-    getData();
+    dispatch(fetchCars());
   }
   const handleCheckboxChange = (condition) => {
     setOnlyNew(condition);

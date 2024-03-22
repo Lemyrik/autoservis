@@ -38,7 +38,7 @@ function tableColums(deleteData) {
           <Link to={record.id}>
             <EditOutlined />
           </Link>
-          <Popconfirms record={record} deleteData={deleteData} />
+          <Popconfirms record={record} deleteData={deleteData}/>
         </Space>
       ),
     },
