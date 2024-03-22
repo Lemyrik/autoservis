@@ -1,43 +1,33 @@
-import { Table, message } from "antd";
-import { React, useEffect, useState } from "react";
-import getAllCars from "../../API/GetAllCars";
-import deleteCar from "../../API/DeleteCar";
+import "./MainPage.css";
 import tableColums from "./config";
-import { UseFetching } from "../../hooks/UseFetching";
 import Filter from "../../components/Filter/Filter";
 import AddRecord from "../../components/AddRecord/AddRecord";
-import "./MainPage.css";
+import { Table } from "antd";
+import { React, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { fetchCars, deletedCar } from "../../store/carSlice";
 
 function MainPage() {
-  const [data, setData] = useState("");
-  const { fetchData, error, loading } = UseFetching();
+  const { cars, loading } = useSelector((state) => state.cars);
+  const dispatch = useDispatch();
 
-  async function getData(params) {
-    fetchData(async () => {
-      const data = await getAllCars(params);
-      setData(data);
-    });
-  }
   async function deleteData(id) {
-    fetchData(async () => {
-      await deleteCar(id);
-      getData();
-      message.success("car deleted");
-    });
+    dispatch(deletedCar(id));
   }
   useEffect(() => {
-    getData();
-  }, []);
+    dispatch(fetchCars());
+  }, [dispatch]);
 
   return (
     <>
       <div className="tools">
-        <AddRecord getData={getData}/>
-        <Filter getData={getData} />
+        <AddRecord />
+        <Filter />
       </div>
       <Table
         columns={tableColums(deleteData)}
-        dataSource={data}
+        dataSource={cars}
         loading={loading}
       />
     </>

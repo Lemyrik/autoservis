@@ -1,7 +1,8 @@
 import { DeleteOutlined } from "@ant-design/icons";
 import { Popconfirm } from "antd";
 
-const Popconfirms = ({record, deleteData}) => {
+
+const Popconfirms = ({ record, deleteData }) => {
   const confirm = (record) => {
     deleteData(record.id);
   };

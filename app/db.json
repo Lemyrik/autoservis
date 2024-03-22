@@ -1,19 +1,11 @@
 {
   "cars": [
     {
-      "brand": "audi",
-      "age": 1996,
-      "mileage": 580000,
-      "price": 3500,
-      "id": "11"
-    },
-    {
-      "id": "12",
-      "key": "2",
       "brand": "BMW",
       "age": 2013,
       "mileage": 360000,
-      "price": 14700
+      "price": "0",
+      "id": "12"
     },
     {
       "id": "13",

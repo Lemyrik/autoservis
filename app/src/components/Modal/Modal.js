@@ -4,7 +4,6 @@ import { Button, Modal as AntModal } from "antd";
 const Modal = ({ isModalOpen, handleCancel, children, form }) => {
   const onSubmit = () => {
     form.submit();
-    onReset();
   };
   const onReset = () => form.resetFields();
 
