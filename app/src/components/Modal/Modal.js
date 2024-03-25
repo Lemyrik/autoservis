@@ -1,23 +1,17 @@
+import { Modal as AntModal } from "antd";
 import React from "react";
-import { Button, Modal as AntModal } from "antd";
+import { MODAL_BTN } from "./config";
 
-const Modal = ({ isModalOpen, handleCancel, children, form }) => {
+const Modal = ({ title, isModalOpen, handleCancel, children, form }) => {
   const onSubmit = () => {
     form.submit();
   };
-  const onReset = () => form.resetFields();
+  const onCancel = () => form.resetFields();
 
   return (
     <AntModal
-      footer={
-        <>
-          <Button type="primary" onClick={onSubmit}>
-            Create
-          </Button>
-          <Button onClick={onReset}>Cancel</Button>
-        </>
-      }
-      title="Add car"
+      footer={MODAL_BTN({ onSubmit, onCancel })?.map((item) => item)}
+      title={title}
       open={isModalOpen}
       onCancel={handleCancel}
     >

@@ -1,18 +1,19 @@
-import { Button, Card, Form, Input } from "antd";
-import FormItem from "antd/es/form/FormItem";
+import { Card, Form } from "antd";
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { entryFields } from "./config";
 import CardTitle from "../../components/CardTitle/CardTitle";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { FormItemComponent } from "../../components/FormItem/FormItem";
 import { fetchCar, updateCar } from "../../store/cardSlice";
+import { entryFields } from "./config";
+import { CARD_PAGE_BTN } from "./config";
 
 function CardPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const [form] = Form.useForm();
   const { car, loading } = useSelector((state) => state.card);
-  
+
   const onFinish = (values) => {
     values.id = id;
     dispatch(updateCar(values));
@@ -24,34 +25,14 @@ function CardPage() {
 
   return (
     <Card title={<CardTitle />} className="card" loading={loading}>
-      <Form
+      <FormItemComponent
+        data={car}
+        form={form}
+        config={entryFields}
         onFinish={onFinish}
-        labelCol={{
-          span: 2,
-        }}
-        wrapperCol={{
-          span: 23,
-        }}
       >
-        {entryFields.map(({ label, name, rules }) => (
-          <FormItem
-            key={label}
-            label={label}
-            name={name}
-            initialValue={car?.[name]}
-            rules={rules}
-          >
-            <Input />
-          </FormItem>
-        ))}
-        <FormItem
-          wrapperCol={{
-            offset: 21,
-          }}
-        >
-          <Button htmlType="Submit">Save</Button>
-        </FormItem>
-      </Form>
+        {CARD_PAGE_BTN({ text: "Save" })}
+      </FormItemComponent>
     </Card>
   );
 }
