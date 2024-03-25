@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import putCar from "../API/PutCars";
+import putCar from "../API/putCars";
 import { message } from "antd";
 import getCarById from "../API/getCarById";
 

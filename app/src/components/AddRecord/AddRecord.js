@@ -1,15 +1,16 @@
-import { Button, Form, Input } from "antd";
+import { Button, Form } from "antd";
 import { useState } from "react";
 import { entryFields } from "../../pages/CardPage/config";
 import { PlusOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { addCar } from "../../store/carSlice";
 import Modal from "../Modal/Modal";
+import { FormItemComponent } from "../FormItem/FormItem";
 
 function AddRecord() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
 
   function openModal() {
     setIsModalOpen(!isModalOpen);
@@ -18,7 +19,7 @@ function AddRecord() {
     setIsModalOpen(false);
   };
   async function onFinish(value) {
-    dispatch(addCar(value))
+    dispatch(addCar(value));
     setIsModalOpen(false);
     form.resetFields();
   }
@@ -29,18 +30,16 @@ function AddRecord() {
         Add car
       </Button>
       <Modal
+        title="Add car"
         form={form}
         isModalOpen={isModalOpen}
         handleCancel={handleCancel}
-        onFinish={onFinish}
       >
-        <Form form={form} layout="vertical" onFinish={onFinish}>
-          {entryFields.map(({ label, name, rules }) => (
-            <Form.Item key={label} label={label} name={name} rules={rules}>
-              <Input />
-            </Form.Item>
-          ))}
-        </Form>
+        <FormItemComponent
+          form={form}
+          config={entryFields}
+          onFinish={onFinish}
+        />
       </Modal>
     </>
   );

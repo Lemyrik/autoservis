@@ -38,10 +38,43 @@ function tableColums(deleteData) {
           <Link to={record.id}>
             <EditOutlined />
           </Link>
-          <Popconfirms record={record} deleteData={deleteData}/>
+          <Popconfirms record={record} deleteData={deleteData} />
         </Space>
       ),
     },
   ];
 }
 export default tableColums;
+
+export const mainPageFilterConfig = [
+  {
+    label: "Brand",
+    name: "brand",
+    type: "textInput",
+  },
+  {
+    label: "Only new car",
+    name: "isSwitch",
+    type: "switch",
+  },
+  {
+    label: "Age",
+    name: "age",
+    type: "textInput",
+    dependencies: ["isSwitch"],
+    hidden: ({ isSwitch }) => isSwitch,
+  },
+  {
+    label: "Mileage",
+    name: "mileage",
+    type: "textInput",
+    dependencies: ["isSwitch"],
+    hidden: ({ isSwitch }) => isSwitch,
+  },
+  {
+    label: "Price",
+    name: "price",
+    type: "textInput",
+    dependencies: ["isSwitch"],
+  },
+];
