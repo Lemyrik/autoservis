@@ -1,12 +1,15 @@
 import { FilterOutlined } from "@ant-design/icons";
-import { Button, Drawer, Form, Space } from "antd";
+import { Button, Drawer, Space } from "antd";
 import React, { useState } from "react";
-import { FormItemComponent } from "../FormItem/FormItem";
 import { FILTER_BTN } from "./config";
+import Form from "@rjsf/antd";
+import validator from "@rjsf/validator-ajv8";
+import { schema, uiSchema } from "./schema";
+import "./filter.css";
 
 const Filter = ({ config, handleSearch, handleReset, ...props }) => {
   const [open, setOpen] = useState(false);
-  const [form] = Form.useForm();
+  const [formData, setFormData] = React.useState(null);
 
   const showDrawer = () => setOpen(true);
 
@@ -14,19 +17,26 @@ const Filter = ({ config, handleSearch, handleReset, ...props }) => {
 
   const onReset = () => {
     handleReset();
-    form?.resetFields();
+    setFormData(null)
   };
-
-  const onSubmit = () => handleSearch(form?.getFieldsValue());
-
+  const onSubmit = () => {
+    handleSearch(formData);
+  };
   return (
     <div className="filter">
       <Drawer title="Filter" onClose={onClose} open={open}>
-        <FormItemComponent form={form} config={config} {...props}>
+        <Form
+          formData={formData}
+          schema={schema}
+          validator={validator}
+          uiSchema={uiSchema}
+          onChange={(e) => setFormData(e.formData)}
+          onSubmit={onSubmit}
+        >
           <Space>
             {FILTER_BTN({ onSubmit, onReset })?.map((item) => item)}
           </Space>
-        </FormItemComponent>
+        </Form>
       </Drawer>
       <Button onClick={showDrawer}>
         <FilterOutlined />

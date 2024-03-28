@@ -8,10 +8,8 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { fetchCars, deletedCar } from "../../store/carSlice";
 import { mainPageFilterConfig } from "./config";
-import { useState } from "react";
 
 function MainPage() {
-  const [onlyNew, setOnlyNew] = useState(false);
   const { cars, loading } = useSelector((state) => state.cars);
   const dispatch = useDispatch();
 
@@ -23,8 +21,8 @@ function MainPage() {
   }, [dispatch]);
 
   const onSearch = (data) => {
-    const { isSwitch, ...arg } = data;
-    if (onlyNew) {
+    const { OnlyNewCars, ...arg } = data;
+    if (OnlyNewCars) {
       arg.age = 2024;
       arg.mileage = 0;
     }
@@ -32,12 +30,7 @@ function MainPage() {
   };
 
   const onReset = () => {
-    setOnlyNew(false);
     dispatch(fetchCars());
-  };
-
-  const handleCheckboxChange = (condition) => {
-    setOnlyNew(condition);
   };
 
   return (
@@ -48,7 +41,6 @@ function MainPage() {
           config={mainPageFilterConfig}
           handleSearch={onSearch}
           handleReset={onReset}
-          handleCheckboxChange={handleCheckboxChange}
         />
       </div>
       <Table
