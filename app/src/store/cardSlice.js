@@ -1,16 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import putCar from "../API/PutCars";
 import { message } from "antd";
-import getCarById from "../API/GetCarById";
+import apiClientInstance from "../API/API";
 
 export const fetchCar = createAsyncThunk(
   "card/fetchCar",
-  async (id) => await getCarById(id)
+  async (id) => await apiClientInstance.getCarById(id)
 );
 export const updateCar = createAsyncThunk(
   "card/updateCar",
   async function (car) {
-    await putCar(car);
+    await apiClientInstance.putCar(car);
     message.success("car updated");
   }
 );
