@@ -2,9 +2,8 @@ import { FilterOutlined } from "@ant-design/icons";
 import { Button, Drawer, Space } from "antd";
 import React, { useState } from "react";
 import { FILTER_BTN } from "./config";
-import Form from "@rjsf/antd";
-import validator from "@rjsf/validator-ajv8";
 import { schema, uiSchema } from "./schema";
+import { FormWithSchema } from "../FormWithSchema/FormWithSchema";
 import "./filter.css";
 
 const Filter = ({ config, handleSearch, handleReset, ...props }) => {
@@ -25,10 +24,9 @@ const Filter = ({ config, handleSearch, handleReset, ...props }) => {
   return (
     <div className="filter">
       <Drawer title="Filter" onClose={onClose} open={open}>
-        <Form
+        <FormWithSchema
           formData={formData}
           schema={schema}
-          validator={validator}
           uiSchema={uiSchema}
           onChange={(e) => setFormData(e.formData)}
           onSubmit={onSubmit}
@@ -36,7 +34,7 @@ const Filter = ({ config, handleSearch, handleReset, ...props }) => {
           <Space>
             {FILTER_BTN({ onSubmit, onReset })?.map((item) => item)}
           </Space>
-        </Form>
+        </FormWithSchema>
       </Drawer>
       <Button onClick={showDrawer}>
         <FilterOutlined />
