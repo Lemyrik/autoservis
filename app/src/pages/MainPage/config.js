@@ -46,35 +46,64 @@ function tableColums(deleteData) {
 }
 export default tableColums;
 
-export const mainPageFilterConfig = [
-  {
-    label: "Brand",
-    name: "brand",
-    type: "textInput",
+export const filterSchema = {
+  type: "object",
+  properties: {
+    onlyNewCars: {
+      title: "Show only new cars",
+      type: "boolean",
+      default: false,
+    },
+    brand: {
+      type: "string",
+      title: "Brand",
+    },
+    price: {
+      type: "integer",
+      title: "Price",
+    },
   },
-  {
-    label: "Only new car",
-    name: "isSwitch",
-    type: "switch",
+  allOf: [
+    {
+      if: {
+        properties: {
+          onlyNewCars: {
+            const: true,
+          },
+        },
+      },
+      then: {
+        properties: {},
+      },
+    },
+    {
+      if: {
+        properties: {
+          onlyNewCars: {
+            const: false,
+          },
+        },
+      },
+      then: {
+        properties: {
+          age: {
+            type: "string",
+            title: "Age",
+          },
+          mileage: {
+            type: "string",
+            title: "Mileage",
+          },
+        },
+      },
+    },
+  ],
+};
+export const filterUiSchema = {
+  conditional: {
+    "ui:title": false,
   },
-  {
-    label: "Age",
-    name: "age",
-    type: "textInput",
-    dependencies: ["isSwitch"],
-    hidden: ({ isSwitch }) => isSwitch,
+  simple: {
+    "ui:title": false,
   },
-  {
-    label: "Mileage",
-    name: "mileage",
-    type: "textInput",
-    dependencies: ["isSwitch"],
-    hidden: ({ isSwitch }) => isSwitch,
-  },
-  {
-    label: "Price",
-    name: "price",
-    type: "textInput",
-    dependencies: ["isSwitch"],
-  },
-];
+};

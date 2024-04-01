@@ -1,17 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import getAllCars from "../API/GetAllCars";
-import deleteCar from "../API/DeleteCar";
-import postCar from "../API/PostCar";
 import { message } from "antd";
-
+import apiClientInstance from "../API/API";
 export const fetchCars = createAsyncThunk(
   "cars/fetchCars",
-  async (params) => await getAllCars(params)
+  async (params) => await apiClientInstance.getAllCars(params)
 );
 export const deletedCar = createAsyncThunk(
   "cars/deleteCar",
   async function (id, { dispatch }) {
-    await deleteCar(id);
+    await apiClientInstance.deleteCar(id);
     dispatch(fetchCars());
     message.success("car deleted");
   }
@@ -19,7 +16,7 @@ export const deletedCar = createAsyncThunk(
 export const addCar = createAsyncThunk(
   "cars/addCar",
   async function (car, { dispatch }) {
-    await postCar(car);
+    await apiClientInstance.postCar(car);
     dispatch(fetchCars());
     message.success("car added");
   }
@@ -45,7 +42,6 @@ const carSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     });
-    
   },
 });
 

@@ -2,11 +2,10 @@ import { FilterOutlined } from "@ant-design/icons";
 import { Button, Drawer, Space } from "antd";
 import React, { useState } from "react";
 import { FILTER_BTN } from "./config";
-import { schema, uiSchema } from "./schema";
 import { FormWithSchema } from "../FormWithSchema/FormWithSchema";
 import "./filter.css";
 
-const Filter = ({ config, handleSearch, handleReset, ...props }) => {
+const Filter = ({ schema, uiSchema, handleSearch, handleReset }) => {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = React.useState(null);
 
